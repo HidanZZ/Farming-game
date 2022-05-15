@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/Tilesets/Grass.png" type="Texture" id=1]
 [ext_resource path="res://assets/Tilesets/Tilled Dirt.png" type="Texture" id=2]
 [ext_resource path="res://scripts/test.gd" type="Script" id=3]
 [ext_resource path="res://assets/Tilesets/cursor.png" type="Texture" id=4]
-[ext_resource path="res://assets/Objects/Basic Plants.png" type="Texture" id=5]
+[ext_resource path="res://assets/Objects/Fantasy Crops.png" type="Texture" id=5]
 [ext_resource path="res://assets/Tilesets/Hills.png" type="Texture" id=6]
 [ext_resource path="res://assets/Tilesets/water/water.tres" type="Texture" id=7]
+[ext_resource path="res://scenes/Hud slots.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=7]
 0/name = "water.tres 0"
@@ -74,13 +75,20 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
-0/name = "Tilled Dirt.png 0"
-0/texture = ExtResource( 2 )
+[sub_resource type="TileSet" id=8]
+0/name = "Fantasy Crops.png 0"
+0/texture = ExtResource( 5 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 112, -3, 16, 16 )
-0/tile_mode = 0
+0/region = Rect2( 0, 0, 112, 16 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 6, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
 0/shape_offset = Vector2( 0, 0 )
@@ -89,11 +97,11 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "wheat 0"
+1/name = "Empty"
 1/texture = ExtResource( 5 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 15, 0, 16, 16 )
+1/region = Rect2( 0, 128, 16, 16 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
@@ -103,12 +111,19 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "wheat 1"
+2/name = "Fantasy Crops.png 2"
 2/texture = ExtResource( 5 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 32, 0, 16, 16 )
-2/tile_mode = 0
+2/region = Rect2( 0, 16, 112, 16 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 16, 16 )
+2/autotile/spacing = 0
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
 2/shape_offset = Vector2( 0, 0 )
@@ -117,12 +132,19 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "wheat 2"
+3/name = "Fantasy Crops.png 3"
 3/texture = ExtResource( 5 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 48, 0, 16, 16 )
-3/tile_mode = 0
+3/region = Rect2( 0, 32, 112, 16 )
+3/tile_mode = 2
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 16, 16 )
+3/autotile/spacing = 0
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 0 )
@@ -131,6 +153,69 @@
 3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
+4/name = "Fantasy Crops.png 4"
+4/texture = ExtResource( 5 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 48, 112, 16 )
+4/tile_mode = 2
+4/autotile/icon_coordinate = Vector2( 0, 0 )
+4/autotile/tile_size = Vector2( 16, 16 )
+4/autotile/spacing = 0
+4/autotile/occluder_map = [  ]
+4/autotile/navpoly_map = [  ]
+4/autotile/priority_map = [  ]
+4/autotile/z_index_map = [  ]
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
+5/name = "Fantasy Crops.png 5"
+5/texture = ExtResource( 5 )
+5/tex_offset = Vector2( 0, 0 )
+5/modulate = Color( 1, 1, 1, 1 )
+5/region = Rect2( 0, 64, 112, 16 )
+5/tile_mode = 2
+5/autotile/icon_coordinate = Vector2( 0, 0 )
+5/autotile/tile_size = Vector2( 16, 16 )
+5/autotile/spacing = 0
+5/autotile/occluder_map = [  ]
+5/autotile/navpoly_map = [  ]
+5/autotile/priority_map = [  ]
+5/autotile/z_index_map = [  ]
+5/occluder_offset = Vector2( 0, 0 )
+5/navigation_offset = Vector2( 0, 0 )
+5/shape_offset = Vector2( 0, 0 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+5/shape_one_way = false
+5/shape_one_way_margin = 0.0
+5/shapes = [  ]
+5/z_index = 0
+6/name = "Fantasy Crops.png 6"
+6/texture = ExtResource( 5 )
+6/tex_offset = Vector2( 0, 0 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 80, 112, 16 )
+6/tile_mode = 2
+6/autotile/icon_coordinate = Vector2( 0, 0 )
+6/autotile/tile_size = Vector2( 16, 16 )
+6/autotile/spacing = 0
+6/autotile/occluder_map = [  ]
+6/autotile/navpoly_map = [  ]
+6/autotile/priority_map = [  ]
+6/autotile/z_index_map = [  ]
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
 
 [sub_resource type="TileSet" id=6]
 0/name = "Hills.png 0"
@@ -180,20 +265,20 @@ format = 1
 tile_data = PoolIntArray( 9, 0, 393220, 10, 0, 393217, 11, 0, 393221, 65544, 0, 393220, 65545, 0, 458757, 65547, 0, 196608, 131079, 0, 196609, 131080, 0, 262153, 131083, 0, 262144, 196614, 0, 196609, 196615, 0, 327685, 196616, 0, 327684, 196617, 0, 196610, 196618, 0, 196610, 196619, 0, 393223, 196620, 0, 196610, 196621, 0, 196610, 196622, 0, 196610, 196623, 0, 196610, 196624, 0, 196610, 196625, 0, 196610, 196626, 0, 196610, 196627, 0, 196611, 262149, 0, 196609, 262150, 0, 327685, 262151, 0, 3, 262152, 0, 65538, 262153, 0, 262148, 262154, 0, 327682, 262155, 0, 327682, 262156, 0, 327682, 262157, 0, 327682, 262158, 0, 327682, 262159, 0, 327682, 262160, 0, 262149, 262161, 0, 65540, 262162, 0, 1, 262163, 0, 262147, 327685, 0, 327688, 327686, 0, 327682, 327687, 0, 262149, 327688, 0, 65539, 327689, 0, 262147, 327696, 0, 262145, 327697, 0, 2, 327698, 0, 5, 327699, 0, 262147, 393221, 0, 196608, 393223, 0, 262145, 393224, 0, 65537, 393225, 0, 262147, 393232, 0, 262145, 393233, 0, 3, 393234, 0, 65541, 393235, 0, 262147, 458757, 0, 196608, 458759, 0, 262145, 458760, 0, 262146, 458761, 0, 262147, 458768, 0, 262145, 458769, 0, 65536, 458770, 0, 65538, 458771, 0, 262147, 524293, 0, 262144, 524295, 0, 262145, 524296, 0, 65538, 524297, 0, 327684, 524298, 0, 196610, 524299, 0, 196610, 524300, 0, 196610, 524301, 0, 196610, 524302, 0, 196610, 524303, 0, 196610, 524304, 0, 327685, 524305, 0, 65538, 524306, 0, 4, 524307, 0, 327684, 524308, 0, 196610, 524309, 0, 196610, 524310, 0, 196611, 589829, 0, 196608, 589831, 0, 262145, 589832, 0, 65539, 589833, 0, 3, 589834, 0, 262146, 589835, 0, 65541, 589836, 0, 262148, 589837, 0, 327682, 589838, 0, 327682, 589839, 0, 327682, 589840, 0, 327682, 589841, 0, 327682, 589842, 0, 327682, 589843, 0, 262149, 589844, 0, 1, 589845, 0, 65536, 589846, 0, 262147, 655365, 0, 262150, 655366, 0, 262151, 655367, 0, 327686, 655368, 0, 327682, 655369, 0, 262149, 655370, 0, 4, 655371, 0, 0, 655372, 0, 262147, 655379, 0, 327681, 655380, 0, 262149, 655381, 0, 65536, 655382, 0, 262147, 720901, 0, 262145, 720902, 0, 262147, 720905, 0, 327681, 720906, 0, 262149, 720907, 0, 1, 720908, 0, 262147, 720910, 0, 196609, 720911, 0, 196610, 720912, 0, 196610, 720913, 0, 196611, 720916, 0, 262145, 720917, 0, 65538, 720918, 0, 262147, 786437, 0, 262145, 786438, 0, 327684, 786439, 0, 196611, 786442, 0, 327681, 786443, 0, 262149, 786444, 0, 262147, 786446, 0, 262145, 786447, 0, 65538, 786448, 0, 5, 786449, 0, 327684, 786450, 0, 196610, 786451, 0, 196610, 786452, 0, 327685, 786453, 0, 1, 786454, 0, 262147, 851973, 0, 262145, 851974, 0, 4, 851975, 0, 327684, 851976, 0, 196611, 851979, 0, 327681, 851980, 0, 327689, 851981, 0, 393217, 851982, 0, 327686, 851983, 0, 262149, 851984, 0, 262146, 851985, 0, 65536, 851986, 0, 3, 851987, 0, 0, 851988, 0, 65539, 851989, 0, 2, 851990, 0, 262147, 917509, 0, 262145, 917510, 0, 0, 917511, 0, 1, 917512, 0, 327684, 917513, 0, 196610, 917514, 0, 196611, 917519, 0, 262145, 917520, 0, 65536, 917521, 0, 3, 917522, 0, 3, 917523, 0, 262148, 917524, 0, 327682, 917525, 0, 327682, 917526, 0, 327683, 983045, 0, 327681, 983046, 0, 327682, 983047, 0, 327682, 983048, 0, 327682, 983049, 0, 327682, 983050, 0, 327689, 983051, 0, 393217, 983052, 0, 393217, 983053, 0, 393218, 983054, 0, 393217, 983055, 0, 327686, 983056, 0, 327682, 983057, 0, 327682, 983058, 0, 327682, 983059, 0, 327683 )
 
 [node name="plants" type="TileMap" parent="."]
-tile_set = SubResource( 3 )
+tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 393222, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 458758, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 524294, 0, 0, 589830, 0, 0 )
+tile_data = PoolIntArray( 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393222, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458758, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 524294, 1, 0, 589830, 1, 0 )
 
 [node name="hills" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource( 6 )
 cell_size = Vector2( 16, 16 )
 cell_quadrant_size = 10
 format = 1
-tile_data = PoolIntArray( 262166, 0, 1, 262167, 0, 65538, 262168, 0, 262147, 327702, 0, 65537, 327703, 0, 65539, 393238, 0, 131073, 393239, 0, 65538, 393240, 0, 3, 458775, 0, 131073, 458776, 0, 65538, 524312, 0, 65538, 524313, 0, 3, 589848, 0, 65537, 589849, 0, 65539, 655384, 0, 131073, 655385, 0, 131075 )
+tile_data = PoolIntArray( 131077, 0, 1, 131078, 0, 2, 131079, 0, 2, 131080, 0, 3, 131091, 0, 1, 131092, 0, 3, 196613, 0, 65537, 196614, 0, 65541, 196615, 0, 65541, 196616, 0, 65539, 196627, 0, 65537, 196628, 0, 65539, 262149, 0, 131073, 262150, 0, 131074, 262151, 0, 131074, 262152, 0, 131075, 262163, 0, 65537, 262164, 0, 65539, 327699, 0, 65537, 327700, 0, 65539, 393235, 0, 65537, 393236, 0, 65539, 458771, 0, 65537, 458772, 0, 65539, 524307, 0, 131073, 524308, 0, 131075, 983044, 0, 1, 983045, 0, 2, 983046, 0, 2, 983047, 0, 2, 983048, 0, 2, 983049, 0, 2, 983050, 0, 2, 983051, 0, 2, 983052, 0, 2, 983053, 0, 2, 983054, 0, 2, 983055, 0, 2, 983056, 0, 2, 983057, 0, 3, 1048580, 0, 131073, 1048581, 0, 131074, 1048582, 0, 131074, 1048583, 0, 131074, 1048584, 0, 131074, 1048585, 0, 131074, 1048586, 0, 131074, 1048587, 0, 131074, 1048588, 0, 131074, 1048589, 0, 131074, 1048590, 0, 131074, 1048591, 0, 131074, 1048592, 0, 131074, 1048593, 0, 131075 )
 
 [node name="Cursor" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.533, 0.533 )
 texture = ExtResource( 4 )
 offset = Vector2( 16, 16 )
@@ -210,3 +295,8 @@ limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 editor_draw_limits = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Hud slots" parent="UI" instance=ExtResource( 8 )]
+position = Vector2( 131, 231 )
