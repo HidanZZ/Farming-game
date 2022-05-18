@@ -29,13 +29,27 @@ func _input(event):
 			dragging = true
 		else:
 			if mouse_start_pos==event.position:
+				var file = File.new()
+				file.open("res://data/data.json", file.READ_WRITE)
+				var json = file.get_as_text()
+				var json_result = JSON.parse(json).result
+				print(json_result)
 				var pos = get_global_mouse_position()
 				var tilemap = $plants
-				var tile_pos = tilemap.world_to_map(pos)
-				var cell = tilemap.get_cellv(tile_pos)
-				if cell>=0:
-					cell+=1
-					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
+				var used_cell=tilemap.get_used_cells()
+				var data={}
+				for i in used_cell:
+					data[i]={"index":0}
+					
+				print(data[Vector2(10,6)])
+#				var tile_pos = tilemap.world_to_map(pos)
+#				var cell = tilemap.get_cellv(tile_pos)
+#				if cell>=0:
+#					cell+=1
+#					place_atlas_tile($plants,2,cell,tile_pos.x,tile_pos.y)
+					
+#					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
+					
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
 		
@@ -45,7 +59,33 @@ func _input(event):
 			#   tilemap.set_cellv(tile_pos, 4)
 #			print("TM pos: ", tile_pos)
 #			print("cell: ", cell)
+func place_atlas_tile(tilemap : TileMap, tileset_atlas_index : int, index:int, x : int, y : int) -> void:
+	var atlas_list = generate_atlas_list(tilemap, tileset_atlas_index)
+	var autotile_coord = atlas_list[index]
+	print(index)
+	tilemap.set_cell(
+		x,
+		y,
+		tileset_atlas_index,
+		false,
+		false,
+		false,
+		autotile_coord)
 
+func generate_atlas_list(tilemap : TileMap, tileset_atlas_index : int) -> Array:
+	var cell_size = tilemap.cell_size
+	var array = Array()
+	var tileset : TileSet = tilemap.tile_set
+	var region = tileset.tile_get_region(tileset_atlas_index)
+	var start = region.position / cell_size
+	var end = region.end / cell_size
+	for x in range(start.x, end.x):
+		for y in range(start.y, end.y):
+			var autotile_coord = Vector2(x, y)
+			var priority = tileset.autotile_get_subtile_priority(tileset_atlas_index, autotile_coord)
+			for p in priority:
+				array.append(autotile_coord)
+	return array
 #			print("Mouse Unclick at: ", pos)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
