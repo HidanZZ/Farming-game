@@ -37,46 +37,39 @@ func _input(event):
 	
 	if event is InputEventMouseButton:
 		if event.is_pressed():
-#			print(screen_start_position==event.position)
-#			print(screen_start_position==event.position)
 			mouse_start_pos = event.position
 			screen_start_position =  $Camera2D.position
 			dragging = true
 		else:
-			if mouse_start_pos==event.position:
-#				var file = File.new()
-#				file.open("res://data/data.json", file.READ_WRITE)
-#				var json = file.get_as_text()
-#				var json_result = JSON.parse(json).result
-#				print(json_result)
+			if mouse_start_pos==event.position && event.button_index == BUTTON_LEFT:
+				
 				var pos = get_global_mouse_position()
 				var tilemap = $plants
-#				var used_cell=tilemap.get_used_cells()
-#				var data={}
-#				for i in used_cell:
-#					data[i]={"index":0}
 					
-				print(data[Vector2(10,6)])
 				var tile_pos = tilemap.world_to_map(pos)
 				var cell = tilemap.get_cellv(tile_pos)
-				if data[tile_pos].index>=0:
+				
+				if data.has(tile_pos) && data[tile_pos].index>=0:
 					data[tile_pos].index+=1
-					place_atlas_tile($plants,2,data[tile_pos].index,tile_pos.x,tile_pos.y)
+					var slot=get_selected_slot()
+					place_atlas_tile($plants,0,data[tile_pos].index,tile_pos.x,tile_pos.y)
 #					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
 					
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
-		
 		$Camera2D.position = $Camera2D.zoom * (mouse_start_pos - event.position) + screen_start_position
 		
-			# if cell == 3: # thetilesets tile id
-			#   tilemap.set_cellv(tile_pos, 4)
-#			print("TM pos: ", tile_pos)
-#			print("cell: ", cell)
+
+func get_selected_slot():
+	var Hudslots=$"UI/Hud slots"
+	return Hudslots.slots[Hudslots.selected]
+	
+	
 func place_atlas_tile(tilemap : TileMap, tileset_atlas_index : int, index:int, x : int, y : int) -> void:
 	var atlas_list = generate_atlas_list(tilemap, tileset_atlas_index)
+	
 	var autotile_coord = atlas_list[index]
-	print(index)
+	
 	tilemap.set_cell(
 		x,
 		y,

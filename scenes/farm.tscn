@@ -1,17 +1,17 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/Tilesets/Grass.png" type="Texture" id=1]
-[ext_resource path="res://assets/Tilesets/Tilled Dirt.png" type="Texture" id=2]
-[ext_resource path="res://scripts/test.gd" type="Script" id=3]
-[ext_resource path="res://assets/Tilesets/cursor.png" type="Texture" id=4]
-[ext_resource path="res://assets/Objects/Fantasy Crops.png" type="Texture" id=5]
+[ext_resource path="res://assets/Tilesets/water/water.tres" type="Texture" id=1]
+[ext_resource path="res://scenes/Hud slots.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/farm.gd" type="Script" id=3]
+[ext_resource path="res://assets/Tilesets/Tilled Dirt.png" type="Texture" id=4]
+[ext_resource path="res://assets/Tilesets/cursor.png" type="Texture" id=5]
 [ext_resource path="res://assets/Tilesets/Hills.png" type="Texture" id=6]
-[ext_resource path="res://assets/Tilesets/water/water.tres" type="Texture" id=7]
-[ext_resource path="res://scenes/Hud slots.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/Objects/Fantasy Crops.png" type="Texture" id=7]
+[ext_resource path="res://assets/Tilesets/Grass.png" type="Texture" id=8]
 
 [sub_resource type="TileSet" id=7]
 0/name = "water.tres 0"
-0/texture = ExtResource( 7 )
+0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 16, 16 )
@@ -27,7 +27,7 @@
 
 [sub_resource type="TileSet" id=5]
 0/name = "Tilled Dirt.png 0"
-0/texture = ExtResource( 2 )
+0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 128, 128 )
@@ -52,7 +52,7 @@
 
 [sub_resource type="TileSet" id=4]
 0/name = "Grass.png 0"
-0/texture = ExtResource( 1 )
+0/texture = ExtResource( 8 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 160, 128 )
@@ -77,7 +77,7 @@
 
 [sub_resource type="TileSet" id=8]
 0/name = "Fantasy Crops.png 0"
-0/texture = ExtResource( 5 )
+0/texture = ExtResource( 7 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 112, 16 )
@@ -98,7 +98,7 @@
 0/shapes = [  ]
 0/z_index = 0
 1/name = "Empty"
-1/texture = ExtResource( 5 )
+1/texture = ExtResource( 7 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 0, 128, 16, 16 )
@@ -112,7 +112,7 @@
 1/shapes = [  ]
 1/z_index = 0
 2/name = "Fantasy Crops.png 2"
-2/texture = ExtResource( 5 )
+2/texture = ExtResource( 7 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 16, 112, 16 )
@@ -133,7 +133,7 @@
 2/shapes = [  ]
 2/z_index = 0
 3/name = "Fantasy Crops.png 3"
-3/texture = ExtResource( 5 )
+3/texture = ExtResource( 7 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 32, 112, 16 )
@@ -154,7 +154,7 @@
 3/shapes = [  ]
 3/z_index = 0
 4/name = "Fantasy Crops.png 4"
-4/texture = ExtResource( 5 )
+4/texture = ExtResource( 7 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 48, 112, 16 )
@@ -175,7 +175,7 @@
 4/shapes = [  ]
 4/z_index = 0
 5/name = "Fantasy Crops.png 5"
-5/texture = ExtResource( 5 )
+5/texture = ExtResource( 7 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 64, 112, 16 )
@@ -196,7 +196,7 @@
 5/shapes = [  ]
 5/z_index = 0
 6/name = "Fantasy Crops.png 6"
-6/texture = ExtResource( 5 )
+6/texture = ExtResource( 7 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 80, 112, 16 )
@@ -242,7 +242,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="test" type="Node2D"]
+[node name="farm" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="water" type="TileMap" parent="."]
@@ -280,7 +280,7 @@ tile_data = PoolIntArray( 131077, 0, 1, 131078, 0, 2, 131079, 0, 2, 131080, 0, 3
 [node name="Cursor" type="Sprite" parent="."]
 visible = false
 scale = Vector2( 0.533, 0.533 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 offset = Vector2( 16, 16 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -298,5 +298,5 @@ editor_draw_limits = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Hud slots" parent="UI" instance=ExtResource( 8 )]
+[node name="Hud slots" parent="UI" instance=ExtResource( 2 )]
 position = Vector2( 131, 231 )

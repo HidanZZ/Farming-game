@@ -12,23 +12,27 @@ func _ready():
 		var temp_slot=slot.instance()
 		temp_slot.index=i
 		temp_slot.position.x=i*34
+		
 		temp_slot.connect("input_event", self, "_on_slot_input_event")
 		slots.append(temp_slot)
 		add_child(temp_slot)
 #	print(get_child(selected))
 	slots[selected].select()
+	
+	
+	
 	pass # Replace with function body.
 
 func _process(delta):
 	if Input.is_action_just_released("wheel_up"):
-		get_selected()
+		selected=get_selected()
 		get_child(selected).unselect()
 		selected+=1
 		if selected >= get_child_count():
 			selected=0
 		get_child(selected).select()
 	elif Input.is_action_just_released("wheel_down"):
-		get_selected()
+		selected=get_selected()
 		get_child(selected).unselect()
 		selected-=1
 		if selected < 0:
@@ -41,8 +45,7 @@ func _process(delta):
 func get_selected():
 	for i in slots.size():
 		if slots[i].selected:
-			selected=i
-			break
+			return i
 
 func _on_slot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton  and event.button_index == BUTTON_LEFT and event.pressed:
