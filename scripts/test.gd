@@ -9,15 +9,30 @@ extends Node2D
 
 var mouse_start_pos
 var screen_start_position
-
+var data
 var dragging = false
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	data = SaveLoad.load_settings()
+	if !data:
+		var used_cell=$plants.get_used_cells()
+		data={}
+		for i in used_cell:
+			data[i]={"index":0}
+	else:
+		for i in data:
+			if data[i].index!=0:
+				place_atlas_tile($plants,2,data[i].index,i.x,i.y)
+	 # Replace with function body.
+	
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_QUIT_REQUEST:
+		SaveLoad.save_settings(data)
+		
+		
 func _input(event):
 	
 	if event is InputEventMouseButton:
@@ -29,25 +44,24 @@ func _input(event):
 			dragging = true
 		else:
 			if mouse_start_pos==event.position:
-				var file = File.new()
-				file.open("res://data/data.json", file.READ_WRITE)
-				var json = file.get_as_text()
-				var json_result = JSON.parse(json).result
-				print(json_result)
+#				var file = File.new()
+#				file.open("res://data/data.json", file.READ_WRITE)
+#				var json = file.get_as_text()
+#				var json_result = JSON.parse(json).result
+#				print(json_result)
 				var pos = get_global_mouse_position()
 				var tilemap = $plants
-				var used_cell=tilemap.get_used_cells()
-				var data={}
-				for i in used_cell:
-					data[i]={"index":0}
+#				var used_cell=tilemap.get_used_cells()
+#				var data={}
+#				for i in used_cell:
+#					data[i]={"index":0}
 					
 				print(data[Vector2(10,6)])
-#				var tile_pos = tilemap.world_to_map(pos)
-#				var cell = tilemap.get_cellv(tile_pos)
-#				if cell>=0:
-#					cell+=1
-#					place_atlas_tile($plants,2,cell,tile_pos.x,tile_pos.y)
-					
+				var tile_pos = tilemap.world_to_map(pos)
+				var cell = tilemap.get_cellv(tile_pos)
+				if data[tile_pos].index>=0:
+					data[tile_pos].index+=1
+					place_atlas_tile($plants,2,data[tile_pos].index,tile_pos.x,tile_pos.y)
 #					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
 					
 			dragging = false
@@ -101,13 +115,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		$Cursor.visible=false
 func _process(delta):
-	if Input.is_action_just_pressed("left_click") and !dragging:
-		var pos = get_global_mouse_position()
-			
-#			print("Mouse Click at: ", pos)
-		var tilemap = $plants
-		var tile_pos = tilemap.world_to_map(pos)
-		var cell = tilemap.get_cellv(tile_pos)
-		if cell>=0:
-			cell+=1
-			tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
+	pass
+#	if Input.is_action_just_pressed("left_click") and !dragging:
+#		var pos = get_global_mouse_position()
+#
+##			print("Mouse Click at: ", pos)
+#		var tilemap = $plants
+#		var tile_pos = tilemap.world_to_map(pos)
+#		var cell = tilemap.get_cellv(tile_pos)
+#		if cell>=0:
+#			cell+=1
+#			tilemap.set_cell(tile_pos.x,tile_pos.y,cell)

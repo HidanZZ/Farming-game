@@ -15,12 +15,18 @@ _global_script_classes=[ {
 "path": "res://addons/GameTemplate/Utility/ResourceAsyncLoader.gd"
 }, {
 "base": "Resource",
+"class": "SaveData",
+"language": "GDScript",
+"path": "res://scripts/SaveData.gd"
+}, {
+"base": "Resource",
 "class": "SaveSettings",
 "language": "GDScript",
 "path": "res://addons/GameTemplate/Utility/SaveSettings.gd"
 } ]
 _global_script_class_icons={
 "ResourceAsyncLoader": "",
+"SaveData": "",
 "SaveSettings": ""
 }
 
@@ -47,6 +53,7 @@ MenuEvent="*res://addons/GameTemplate/Autoload/MenuEvent.gd"
 Music="*res://addons/GameTemplate/Autoload/Music.tscn"
 SfxManager="*res://addons/GameTemplate/Autoload/SfxManager.gd"
 HtmlFocus="*res://addons/GameTemplate/Autoload/HtmlFocus.tscn"
+SaveLoad="*res://scripts/SaveLoad.gd"
 
 [display]
 
