@@ -72,6 +72,11 @@ enabled=PoolStringArray( "res://addons/GameTemplate/plugin.cfg" )
 [global]
 
 display=false
+font=false
+
+[gui]
+
+theme/custom_font="res://addons/GameTemplate/Assets/Fonts/pixellocale_8.tres"
 
 [importer_defaults]
 

@@ -5,7 +5,7 @@ extends Node
 # var a = 2
 # var b = "text"
 
-
+const EMPTY=1
 # Replace with function body.
 
 var plants := {

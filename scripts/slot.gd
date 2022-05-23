@@ -4,7 +4,7 @@ extends Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var tilemap = get_parent().get_parent().get_parent().get_node("plants")
+onready var tilemap = get_parent().get_parent().get_parent().get_parent().get_node("plants")
 var selected = false
 var plant = -1
 var index
@@ -31,7 +31,6 @@ func change_icon():
 		var region_rect=tileset.tile_get_region(Global.plants[plant].id)
 		region_rect.position.x+= tilemap.cell_size.x*6
 		
-		
 		icon.region_rect= Rect2(region_rect.position,tilemap.cell_size)
 	else:
 		icon.texture=null
@@ -43,7 +42,13 @@ func select():
 	self.position.y-=10
 	selected=true
 
-
+func add_plant(plant_id):
+	plant=plant_id
+	if icon:
+		change_icon()
+	else:
+		init_icon()
+	
 
 func _on_slot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton  and event.button_index == BUTTON_LEFT and event.pressed:

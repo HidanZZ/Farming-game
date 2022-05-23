@@ -12,7 +12,7 @@ var screen_start_position
 var data
 var dragging = false
 
-
+var i=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,11 +20,13 @@ func _ready():
 	if !data:
 		var used_cell=$plants.get_used_cells()
 		data={}
+		
 		for i in used_cell:
-			data[i]={"index":0}
+			data[i]={"index":0,"id":Global.EMPTY}
 	else:
+		print($plants.get_used_cells())
 		for i in data:
-			if data[i].index!=0:
+			if data[i].id!=Global.EMPTY:
 				place_atlas_tile($plants,2,data[i].index,i.x,i.y)
 	 # Replace with function body.
 	
@@ -49,10 +51,17 @@ func _input(event):
 				var tile_pos = tilemap.world_to_map(pos)
 				var cell = tilemap.get_cellv(tile_pos)
 				
-				if data.has(tile_pos) && data[tile_pos].index>=0:
-					data[tile_pos].index+=1
+				if data.has(tile_pos) :
+					#add logic if empty and has slot add plant if has plant increase index
 					var slot=get_selected_slot()
-					place_atlas_tile($plants,0,data[tile_pos].index,tile_pos.x,tile_pos.y)
+					if slot.plant !=-1:
+						if data[tile_pos].id==Global.EMPTY:
+							data[tile_pos].id=Global.plants[slot.plant].id
+						
+						print(data[tile_pos])
+#						place_atlas_tile($plants,6,4,tile_pos.x,tile_pos.y)
+						tilemap.set_cell(tile_pos.x,tile_pos.y,-1,false,false,false,Vector2(6,1))
+						data[tile_pos].index+=1
 #					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
 					
 			dragging = false
@@ -67,7 +76,7 @@ func get_selected_slot():
 	
 func place_atlas_tile(tilemap : TileMap, tileset_atlas_index : int, index:int, x : int, y : int) -> void:
 	var atlas_list = generate_atlas_list(tilemap, tileset_atlas_index)
-	
+	print(atlas_list)
 	var autotile_coord = atlas_list[index]
 	
 	tilemap.set_cell(
@@ -83,6 +92,7 @@ func generate_atlas_list(tilemap : TileMap, tileset_atlas_index : int) -> Array:
 	var cell_size = tilemap.cell_size
 	var array = Array()
 	var tileset : TileSet = tilemap.tile_set
+#	print(tileset.get_tiles_ids())
 	var region = tileset.tile_get_region(tileset_atlas_index)
 	var start = region.position / cell_size
 	var end = region.end / cell_size
@@ -119,3 +129,17 @@ func _process(delta):
 #		if cell>=0:
 #			cell+=1
 #			tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
+
+
+func _on_clear_pressed():
+	for i in $plants.get_used_cells():
+			data[i]={"index":0,"id":Global.EMPTY}
+			place_atlas_tile($plants,1,data[i].index,i.x,i.y)
+
+
+func _on_test_timeout():
+		var tileset=$plants.tile_set
+		var ids= tileset.get_tiles_ids()
+		place_atlas_tile($plants,i,0,10,5)
+		i+=1
+	 # Replace with function body.
