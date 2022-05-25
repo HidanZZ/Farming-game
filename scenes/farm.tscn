@@ -78,13 +78,13 @@
 0/z_index = 0
 
 [sub_resource type="TileSet" id=8]
-0/name = "Fantasy Crops.png 0"
+0/name = "empty"
 0/texture = ExtResource( 7 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 112, 16 )
+0/region = Rect2( 0, 128, 16, 16 )
 0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 6, 0 )
+0/autotile/icon_coordinate = Vector2( 0, 0 )
 0/autotile/tile_size = Vector2( 16, 16 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
@@ -99,12 +99,19 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "Empty"
+1/name = "beatroot"
 1/texture = ExtResource( 7 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 128, 16, 16 )
-1/tile_mode = 0
+1/region = Rect2( 0, 0, 112, 16 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 6, 0 )
+1/autotile/tile_size = Vector2( 16, 16 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
 1/shape_offset = Vector2( 0, 0 )
@@ -113,13 +120,13 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "Fantasy Crops.png 2"
+2/name = "worm"
 2/texture = ExtResource( 7 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 16, 112, 16 )
 2/tile_mode = 2
-2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/icon_coordinate = Vector2( 6, 0 )
 2/autotile/tile_size = Vector2( 16, 16 )
 2/autotile/spacing = 0
 2/autotile/occluder_map = [  ]
@@ -134,13 +141,13 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "Fantasy Crops.png 3"
+3/name = "carrot"
 3/texture = ExtResource( 7 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 32, 112, 16 )
 3/tile_mode = 2
-3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/icon_coordinate = Vector2( 6, 0 )
 3/autotile/tile_size = Vector2( 16, 16 )
 3/autotile/spacing = 0
 3/autotile/occluder_map = [  ]
@@ -161,7 +168,7 @@
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 48, 112, 16 )
 4/tile_mode = 2
-4/autotile/icon_coordinate = Vector2( 0, 0 )
+4/autotile/icon_coordinate = Vector2( 6, 0 )
 4/autotile/tile_size = Vector2( 16, 16 )
 4/autotile/spacing = 0
 4/autotile/occluder_map = [  ]
@@ -176,13 +183,13 @@
 4/shape_one_way_margin = 0.0
 4/shapes = [  ]
 4/z_index = 0
-5/name = "Fantasy Crops.png 5"
+5/name = "lettuce"
 5/texture = ExtResource( 7 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 64, 112, 16 )
 5/tile_mode = 2
-5/autotile/icon_coordinate = Vector2( 0, 0 )
+5/autotile/icon_coordinate = Vector2( 6, 0 )
 5/autotile/tile_size = Vector2( 16, 16 )
 5/autotile/spacing = 0
 5/autotile/occluder_map = [  ]
@@ -197,13 +204,13 @@
 5/shape_one_way_margin = 0.0
 5/shapes = [  ]
 5/z_index = 0
-6/name = "Fantasy Crops.png 6"
+6/name = "orange"
 6/texture = ExtResource( 7 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 80, 112, 16 )
 6/tile_mode = 2
-6/autotile/icon_coordinate = Vector2( 0, 0 )
+6/autotile/icon_coordinate = Vector2( 6, 0 )
 6/autotile/tile_size = Vector2( 16, 16 )
 6/autotile/spacing = 0
 6/autotile/occluder_map = [  ]
@@ -270,7 +277,7 @@ tile_data = PoolIntArray( 9, 0, 393220, 10, 0, 393217, 11, 0, 393221, 65544, 0, 
 tile_set = SubResource( 8 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 393222, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393230, 1, 0, 393231, 1, 0, 458758, 1, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 524294, 1, 0, 589830, 1, 0 )
+tile_data = PoolIntArray( 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 0, 0, 393222, 0, 0, 393226, 0, 0, 393227, 0, 0, 393228, 0, 0, 393229, 0, 0, 393230, 0, 0, 393231, 0, 0, 458758, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 524294, 0, 0, 589830, 0, 0 )
 
 [node name="hills" type="TileMap" parent="."]
 tile_set = SubResource( 6 )
@@ -300,7 +307,6 @@ editor_draw_limits = true
 
 [node name="test" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 

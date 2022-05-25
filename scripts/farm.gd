@@ -6,16 +6,19 @@ extends Node2D
 # var b = "text"
 
 
+# redoooo tilesets rah mkhwrin
+
 
 var mouse_start_pos
 var screen_start_position
 var data
 var dragging = false
 
-var i=0
+var i=1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	data = SaveLoad.load_settings()
 	if !data:
 		var used_cell=$plants.get_used_cells()
@@ -27,7 +30,7 @@ func _ready():
 		print($plants.get_used_cells())
 		for i in data:
 			if data[i].id!=Global.EMPTY:
-				place_atlas_tile($plants,2,data[i].index,i.x,i.y)
+				set_cell($plants,2,data[i].index,i.x,i.y)
 	 # Replace with function body.
 	
 func _notification(what: int) -> void:
@@ -47,7 +50,7 @@ func _input(event):
 				
 				var pos = get_global_mouse_position()
 				var tilemap = $plants
-					
+#				print(generate_atlas_list(tilemap,tilemap.tile_set.find_tile_by_name("orange")))
 				var tile_pos = tilemap.world_to_map(pos)
 				var cell = tilemap.get_cellv(tile_pos)
 				
@@ -58,11 +61,8 @@ func _input(event):
 						if data[tile_pos].id==Global.EMPTY:
 							data[tile_pos].id=Global.plants[slot.plant].id
 						
-						print(data[tile_pos])
-#						place_atlas_tile($plants,6,4,tile_pos.x,tile_pos.y)
-						tilemap.set_cell(tile_pos.x,tile_pos.y,-1,false,false,false,Vector2(6,1))
+						set_cell($plants,data[tile_pos].id,data[tile_pos].index,tile_pos.x,tile_pos.y)
 						data[tile_pos].index+=1
-#					tilemap.set_cell(tile_pos.x,tile_pos.y,cell)
 					
 			dragging = false
 	elif event is InputEventMouseMotion and dragging:
@@ -73,36 +73,26 @@ func get_selected_slot():
 	var Hudslots=$"UI/Hud slots"
 	return Hudslots.slots[Hudslots.selected]
 	
-	
-func place_atlas_tile(tilemap : TileMap, tileset_atlas_index : int, index:int, x : int, y : int) -> void:
-	var atlas_list = generate_atlas_list(tilemap, tileset_atlas_index)
-	print(atlas_list)
-	var autotile_coord = atlas_list[index]
-	
-	tilemap.set_cell(
-		x,
-		y,
-		tileset_atlas_index,
-		false,
-		false,
-		false,
-		autotile_coord)
+func set_cell(tilemap, id,index,x,y):
+	tilemap.set_cell(x, y, id, false, false, false, get_subtile_with_priority(id,tilemap,index))
 
-func generate_atlas_list(tilemap : TileMap, tileset_atlas_index : int) -> Array:
-	var cell_size = tilemap.cell_size
-	var array = Array()
-	var tileset : TileSet = tilemap.tile_set
-#	print(tileset.get_tiles_ids())
-	var region = tileset.tile_get_region(tileset_atlas_index)
-	var start = region.position / cell_size
-	var end = region.end / cell_size
-	for x in range(start.x, end.x):
-		for y in range(start.y, end.y):
-			var autotile_coord = Vector2(x, y)
-			var priority = tileset.autotile_get_subtile_priority(tileset_atlas_index, autotile_coord)
+func get_subtile_with_priority(id, tilemap: TileMap,index):
+	var tiles = tilemap.tile_set
+	var rect = tilemap.tile_set.tile_get_region(id)
+	print(id,tiles.autotile_get_size(id))
+	var size_x = rect.size.x / tiles.autotile_get_size(id).x
+	var size_y = rect.size.y / tiles.autotile_get_size(id).y
+	var tile_array = []
+	for x in range(size_x):
+		for y in range(size_y):
+			var priority = tiles.autotile_get_subtile_priority(id, Vector2(x ,y))
 			for p in priority:
-				array.append(autotile_coord)
-	return array
+				tile_array.append(Vector2(x,y))
+
+	return tile_array[index]
+
+
+
 #			print("Mouse Unclick at: ", pos)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -132,14 +122,16 @@ func _process(delta):
 
 
 func _on_clear_pressed():
+	
 	for i in $plants.get_used_cells():
 			data[i]={"index":0,"id":Global.EMPTY}
-			place_atlas_tile($plants,1,data[i].index,i.x,i.y)
+			set_cell($plants,Global.EMPTY,data[i].index,i.x,i.y)
 
 
 func _on_test_timeout():
 		var tileset=$plants.tile_set
 		var ids= tileset.get_tiles_ids()
-		place_atlas_tile($plants,i,0,10,5)
+		print(i)
+		set_cell($plants,i,6,10,5)
 		i+=1
 	 # Replace with function body.

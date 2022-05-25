@@ -5,13 +5,13 @@ extends Node
 # var a = 2
 # var b = "text"
 
-const EMPTY=1
+const EMPTY=0
 # Replace with function body.
 
 var plants := {
 	0:{
 		"name":"beatroot",
-		"id":0
+		"id":1
 	},1:{
 		"name":"Plant 2",
 		"id":2
