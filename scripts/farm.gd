@@ -5,7 +5,6 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-var anima := Anima.begin(self)
 # redoooo tilesets rah mkhwrin
 
 var shop_open=false;
