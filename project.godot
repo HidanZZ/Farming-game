@@ -55,6 +55,9 @@ SfxManager="*res://addons/GameTemplate/Autoload/SfxManager.gd"
 HtmlFocus="*res://addons/GameTemplate/Autoload/HtmlFocus.tscn"
 SaveLoad="*res://scripts/SaveLoad.gd"
 Global="*res://data/Global.gd"
+AnimaUI="*res://addons/anima/ui/AnimaUI.gd"
+ANIMA="*res://addons/anima/core/costants.gd"
+Anima="*res://addons/anima/core/anima.gd"
 
 [display]
 

@@ -5,10 +5,10 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
-
+var anima := Anima.begin(self)
 # redoooo tilesets rah mkhwrin
 
-
+var shop_open=false;
 var mouse_start_pos
 var screen_start_position
 var dragging = false
@@ -17,15 +17,12 @@ var i=1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
+	var used_cell=$plants.get_used_cells()
+	Global.data={}
 
-	if !Global.data:
-		var used_cell=$plants.get_used_cells()
-		Global.data={}
-		
-		for i in used_cell:
-			Global.data[i]={"index":0,"id":Global.EMPTY}
-	else:
-		load_data_to_game()
+	for i in used_cell:
+		Global.data[i]={"index":0,"id":Global.EMPTY}
 	 # Replace with function body.
 func load_data_to_game():
 	for i in Global.data:
@@ -77,6 +74,15 @@ func place_plant(pos):
 				var timer=setup_timer(Global.plants[slot.plant].time)
 				Global.data[tile_pos].timer=timer
 				add_child(timer)
+				slot.decrement()
+		if Global.data[tile_pos].index==5:
+					$"UI/Hud slots".add_plant_to_slot(Global.find_plant_i_by_id(Global.data[tile_pos].id),randi()%10+1)
+					Global.data[tile_pos]={"index":0,"id":Global.EMPTY}
+					set_cell($plants,Global.EMPTY,Global.data[tile_pos].index,tile_pos.x,tile_pos.y)
+				
+					
+				
+	
 #				Global.data[tile_pos].index+=1
 func setup_timer(time):
 	var timer= Timer.new()
@@ -115,7 +121,6 @@ func get_subtile_with_priority(id, tilemap: TileMap,index):
 func _unhandled_input(event: InputEvent) -> void:
 #	print(event.g)
 	var mouse_pos = get_global_mouse_position()
-	print(mouse_pos)
 	
 	var tile_pos = $plants.world_to_map(mouse_pos)
 	var tile_cell_at_mouse_pos = $plants.get_cellv(tile_pos)
@@ -130,7 +135,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 func show_timer_ui(tile_pos,mouse_pos):
 	var timer_ui=$"UI/timer hover"
-	print()
 	
 	var spot=Global.data[tile_pos]
 	if spot.id!=Global.EMPTY:
@@ -180,3 +184,25 @@ func _on_clear_pressed():
 #		set_cell($plants,i,6,10,5)
 #		i+=1
 	 # Replace with function body.
+
+
+func _on_hide_pressed():
+	$UI/clear.visible=false
+	$UI/random.visible=false
+	$UI/hide.visible=false
+	pass # Replace with function body.
+
+
+func _on_shop_open_shop():
+	$UI/shop_ui/AnimationPlayer.playback_speed=5
+	if shop_open:
+		$UI/shop_ui/AnimationPlayer.play_backwards("enter")
+	else:
+		
+		$UI/shop_ui/AnimationPlayer.play("enter")
+
+
+
+
+func _on_shop_animation_finished(anim_name):
+	shop_open=!shop_open# Replace with function body.

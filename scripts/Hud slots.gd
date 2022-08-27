@@ -60,8 +60,7 @@ func get_selected():
 func _on_slot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton  and event.button_index == BUTTON_LEFT and event.pressed:
 		print(shape_idx)
-		for i in get_children():
-#			pass
+		for i in slots:
 			if i.selected:
 				i.unselect()
 
@@ -73,4 +72,28 @@ func _on_random_pressed():
 	print(random_plant.id)
 	slots[get_selected()].add_plant(plant_index)
 	change_title(random_plant.name)
+	
+
+func get_slot(plant):
+	for i in slots.size():
+		if slots[i].is_plant(plant):
+			return i
+	return is_empty()
+func is_empty():
+	for i in slots.size():
+		if slots[i].is_empty():
+			return i
+	return -1
+func _on_shop_ui_buy_item(plant_id,price):
+	if Global.coins>=price:
+		Global.coins-=price
+		add_plant_to_slot(plant_id,1)		
+			
+func add_plant_to_slot(plant_id,q):
+	var slot=get_slot(plant_id)
+	if slot!=-1:
+		var plants = Global.plants
+		var plant=plants[plant_id]
+		slots[slot].add_plant(plant_id,q)
+		change_title(plant.name)
 	

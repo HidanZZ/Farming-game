@@ -7,12 +7,12 @@ extends Node
 var data
 const EMPTY=0
 # Replace with function body.
-
+var coins = 9999
 var plants := {
 	0:{
 		"name":"beatroot",
 		"id":1,
-		"time":60
+		"time":10
 	},1:{
 		"name":"Plant 2",
 		"id":2,
@@ -40,7 +40,10 @@ func find_plant_by_id(id):
 	for i in plants.values():
 		if i.id==id:
 			return i
-
+func find_plant_i_by_id(id):
+	for i in range(plants.size()):
+		if plants[i].id==id:
+			return i
 func _ready():
 	data = SaveLoad.load_settings()
 	
